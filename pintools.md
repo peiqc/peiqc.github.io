@@ -28,10 +28,10 @@ pin采用的是二进制动态插桩，这种方式不需要对二进制程序�
 
 ### 插桩粒度
 pin不仅仅可以在指令级别进行插桩，pin支持四种粒度的插桩：
-    * instruction instrumentation
-    * trace instrumentation
-    * routine instrumentation
-    * image instrumentation
+    [*] instruction instrumentation
+    [*] trace instrumentation
+    [*] routine instrumentation
+    [*] image instrumentation
 以下主要就指令集插桩进行介绍
 
 ## pintool使用
