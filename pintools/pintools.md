@@ -277,7 +277,7 @@ maxk表示该次采集最多能生成的pinball文件个数
 mode与线程数量有关，单线程选择st模式，多线程为mt
 warmup_length、prolog_length为程序区域开始前的截取的一段代码，通常给0就行。
 epilog_length为区域结束后的一段代码，也给0.
-pinplay
+slice_size表示每次采集的一段simpoint代码中有多少条指令。
 然后，调用pinplay下的脚本：
 ```shell
 sniper_pinpoints.py --cfg demo.cfg –l >& out_1.txt
