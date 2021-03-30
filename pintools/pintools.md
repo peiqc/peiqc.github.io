@@ -252,6 +252,7 @@ pintool中提供了工具，可以生成程序片段的pinball文件，pintool�
 ### pinpoints生成
 产生pinpoints的workfolw如下图所示：
 ![](./1.PNG)
+首先通过pinplay工具产生整个程序的pinball，然后回放pinball文件，通过simpoint找到代表性程序段，最后重新录制形成这些程序段的pinball文件。
 
 要生成pinpoints，首先需要创建一个配置文件，配置文件的范例如下：
 ```s
@@ -263,10 +264,20 @@ command: ./dtlb5-lin64 -p10000 -s10
 maxk: 5
 mode: st
 warmup_length: 1000000
+prolog_length: 0
+epilog_length: 0
 slice_size: 3500000
 pinplayhome: pinplay-1.3-pin-2.13-65163-gcc.4.4.7-linux
 sniper_root: /home/tmstall/sniper-6.0
 ```
+该文件中各个字段的意义如下：
+program_name和input_name与产生的pinball文件的命名相关，不会影响pinball的采集过程。
+command为需要采集的程序的调用命令。
+maxk表示该次采集最多能生成的pinball文件个数
+mode与线程数量有关，单线程选择st模式，多线程为mt
+warmup_length、prolog_length为程序区域开始前的截取的一段代码，通常给0就行。
+epilog_length为区域结束后的一段代码，也给0.
+pinplay
 然后，调用pinplay下的脚本：
 ```shell
 sniper_pinpoints.py --cfg demo.cfg –l >& out_1.txt
@@ -282,4 +293,8 @@ sniper_pinpoints.py --cfg demo.cfg –s >& out_3.txt
 最后，生成pinball文件
 ```shell
 sniper_pinpoints.py --cfg demo.cfg –p >& out_4.txt
+```
+以上过程可以也使用一条命令直接完成
+```shell
+pinpoints.py --cfg demo.cfg --default_phases
 ```
