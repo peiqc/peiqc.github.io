@@ -294,7 +294,7 @@ sniper_pinpoints.py --cfg demo.cfg –s >& out_3.txt
 ```shell
 sniper_pinpoints.py --cfg demo.cfg –p >& out_4.txt
 ```
-以上过程可以也使用一条命令直接完成
+以上过程可以也使用一条命令直接完成，配置文件中的pinplayhome和sniper_root也不是必需的。
 ```shell
 pinpoints.py --cfg demo.cfg --default_phases
 ```
